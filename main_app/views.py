@@ -1,9 +1,25 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+from django.views.generic.edit import CreateView
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
 # import character model
 from .models import Character
 
 
+class CharacterCreate(CreateView):
+  model = Character
+  fields = '__all__'
+  success_url = '/characters/'
+
+class CharacterUpdate(UpdateView):
+  model = Character
+  fields = '__all__'
+  success_url = '/characters/'
+
+
+class CharacterDelete(DeleteView):
+  model = Character
+  success_url = '/characters/'
 # Define the home view
 def home(request):
   return HttpResponse('<h1>Hello /ᐠ｡‸｡ᐟ\ﾉ</h1>')
@@ -25,5 +41,6 @@ def characters_detail(request, character_id):
   character = Character.objects.get(id= character_id)
   return render(request,'characters/detail.html', {'character': character})
   
+
 
 

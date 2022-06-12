@@ -9,6 +9,10 @@
     <p>Mood: {{ character.mood }}</p>
     <p>Quote: {{ character.quote }}</p>
   </div>
+  <div class="card-action">
+    <a href="{% url 'characters_update' character.id %}">Edit</a>
+    <a href="{% url 'characters_delete' character.id %}">Delete</a>
+  </div>
 </div>
 
 {% endblock %}
