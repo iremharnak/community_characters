@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block content  %}
+  <h1>Characters</h1>
+  {% for c in characters %}
+    <div class="card">
+      <div class="card-content">
+        <span class="card-title">{{ c.name }}</span>
+        <p>Mood: {{ c.mood }}</p>
+        <p>Quote: {{ c.quote }}</p>
+      </div>
+    </div>
+  {%endfor %}
+{% endblock %}
