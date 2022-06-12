@@ -25,8 +25,10 @@ def seed(request):
   Character.objects.create(name='Abed Nadir', mood='Weird', quote='Cool cool cool')
   return HttpResponse('done')
 
-def show(request, character_id):
+def characters_detail(request, character_id):
   print('incoming character wildcard value is', character_id)
-  specific_character = Character.objects.get
+  character = Character.objects.get(id= character_id)
+  return render(request,'characters/detail.html', {'character': character})
+  
 
 
