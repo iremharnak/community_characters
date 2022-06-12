@@ -18,13 +18,7 @@ def index(request):
   characters = Character.objects.all()
   return render(request, 'characters/index.html', { 'characters': characters})
 
-# Seed some data (via internal route)
-def seed(request):
-  Character.objects.create(name='Jeff Winger', mood='Obnoxious', quote='I am awesome')
-  Character.objects.create(name='Brita Perry', mood='Frustrated', quote='I lived in NY')
-  Character.objects.create(name='Abed Nadir', mood='Weird', quote='Cool cool cool')
-  return HttpResponse('done')
-  
+
 # show individual character
 def characters_detail(request, character_id):
   print('incoming character wildcard value is', character_id)
