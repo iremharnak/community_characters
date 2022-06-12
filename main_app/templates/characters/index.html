@@ -4,11 +4,14 @@
   <h1>Characters</h1>
   {% for c in characters %}
     <div class="card">
+      <a href="/characters/{{ character.id }}">
       <div class="card-content">
         <span class="card-title">{{ c.name }}</span>
         <p>Mood: {{ c.mood }}</p>
         <p>Quote: {{ c.quote }}</p>
       </div>
+      </a>
     </div>
   {%endfor %}
+
 {% endblock %}

@@ -1,6 +1,7 @@
 from django.shortcuts import render
-
 from django.http import HttpResponse
+# import character model
+from .models import Character
 
 
 # Define the home view
@@ -13,16 +14,19 @@ def about(request):
 
 # Define index view
 def index(request):
+  # give me a list of characters
+  characters = Character.objects.all()
   return render(request, 'characters/index.html', { 'characters': characters})
-# fake data
-class Character:  
-  def __init__(self, name, mood, quote):
-    self.name = name
-    self.mood = mood
-    self.quote = quote
-    
-characters = [
-  Character('Jeff Winger', 'Obnoxious', 'I am awesome'),
-  Character('Brita Perry', 'Argumentative', 'I lived in NY'),
-  Character('Abed Nadir', 'Weird', 'Cool cool cool')
-]
+
+# Seed some data (via internal route)
+def seed(request):
+  Character.objects.create(name='Jeff Winger', mood='Obnoxious', quote='I am awesome')
+  Character.objects.create(name='Brita Perry', mood='Frustrated', quote='I lived in NY')
+  Character.objects.create(name='Abed Nadir', mood='Weird', quote='Cool cool cool')
+  return HttpResponse('done')
+
+def show(request, character_id):
+  print('incoming character wildcard value is', character_id)
+  specific_character = Character.objects.get
+
+
