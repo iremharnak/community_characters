@@ -5,10 +5,10 @@ body {
   background-color: white;
   color: rgba(0,0,0,0.87);
 }
-nav .nav-wrapper {
+/* nav .nav-wrapper {
   background-color: #63a2de;
   color: #66033a;
-}
+} */
 body {
   display: flex;
   min-height: 100vh;

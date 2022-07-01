@@ -14,5 +14,42 @@
     <a href="{% url 'characters_delete' character.id %}">Delete</a>
   </div>
 </div>
-
+<table>
+  <thead>
+  </thead>
+  <tbody class="striped">
+    {% for episode in character.episode_set.all %}
+    <tr>
+      <td>{{episode.season}}</td>
+      <td>{{episode.episode}}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+<form action="/characters/{{character.id}}/add_episode_method1/" method="POST">
+  {% csrf_token %}
+  Season: <input name="season">
+  Episode: <input name="episode">
+  <button>Submit</button>
+</form>
+</table>
+<hr>
+<div class="row">
+  <div class="col s6">
+    <h3>{{ character.name }}'s Locations</h3>
+    {% if character.location.count %}
+      {% for location in character.location.all %}
+        <div class="card">
+          <div class="card-content">
+            <span class="card-title">
+             {{ location.name }}
+            </span>
+          </div>
+        </div>
+      {% endfor %}
+    {% else %}
+      <h5>No Location :(</h5>
+    {% endif %}
+  </div>
+  <!-- Available toys will come after this line -->
+</div>
 {% endblock %}

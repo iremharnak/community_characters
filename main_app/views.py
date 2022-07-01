@@ -1,9 +1,14 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.views.generic.edit import CreateView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 # import character model
 from .models import Character
+from .models import Location
+from .models import Episode
+
+
+
 
 
 class CharacterCreate(CreateView):
@@ -41,6 +46,17 @@ def characters_detail(request, character_id):
   character = Character.objects.get(id= character_id)
   return render(request,'characters/detail.html', {'character': character})
   
-
-
-
+# add episode
+def add_episode_method1(request, character_id):
+  try:
+    # hey database, give me the cat that has id 14
+    c = Character.objects.get(id=character_id)
+    # get a hold of this cat's feedings
+    Episode.objects.create(
+      season=request.POST['season'], 
+      episode=request.POST['episode'],
+      character_id=character_id,
+      )
+    return redirect(f'/characters/{character_id}')
+  except:
+    return HttpResponse('something went wrong. probably bad form data')
